@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajala Olakunle · AI/ML Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue-50:#EFF6FF;--blue-100:#DBEAFE;--blue-200:#BFDBFE;
+  --blue-400:#60A5FA;--blue-500:#3B82F6;--blue-600:#2563EB;--blue-700:#1D4ED8;
+  --slate-50:#F8FAFC;--slate-100:#F1F5F9;--slate-200:#E2E8F0;
+  --slate-300:#CBD5E1;--slate-400:#94A3B8;--slate-500:#64748B;
+  --slate-600:#475569;--slate-700:#334155;--slate-800:#1E293B;--slate-900:#0F172A;
+  --white:#fff;
+  --nav-h:64px;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --radius:12px;--radius-lg:16px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06);
+  --shadow-md:0 4px 16px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--slate-800);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:var(--nav-h);
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--slate-200);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;
+}
+.nav-logo{font-family:var(--serif);font-size:20px;color:var(--slate-900);text-decoration:none}
+.nav-logo em{font-style:italic;color:var(--blue-600)}
+.nav-links{display:flex;gap:2px}
+.nav-links a{
+  font-size:13px;font-weight:400;color:var(--slate-500);
+  text-decoration:none;padding:6px 12px;border-radius:6px;
+  transition:color .15s,background .15s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--slate-900);background:var(--slate-100)}
+.nav-links a.active{font-weight:500;color:var(--blue-600);background:var(--blue-50)}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:calc(var(--nav-h) + 5rem) 5vw 5rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 65% 55% at 80% 35%,var(--blue-50) 0%,transparent 70%),
+    radial-gradient(ellipse 45% 40% at 5% 85%,#EFF6FF 0%,transparent 60%);
+}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;
+  background-image:radial-gradient(var(--slate-200) 1px,transparent 1px);
+  background-size:30px 30px;opacity:.4;
+}
+.hero-inner{position:relative;z-index:1;max-width:700px}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue-50);border:1px solid var(--blue-200);
+  color:var(--blue-700);font-size:11px;font-weight:600;
+  letter-spacing:.07em;text-transform:uppercase;
+  padding:5px 14px;border-radius:99px;margin-bottom:1.5rem;
+  animation:fadeUp .5s ease both;
+}
+.hero-pill::before{
+  content:'';width:6px;height:6px;background:var(--blue-500);
+  border-radius:50%;animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+h1.hero-h{
+  font-family:var(--serif);
+  font-size:clamp(50px,8vw,86px);
+  line-height:1.02;letter-spacing:-1.5px;
+  color:var(--slate-900);margin-bottom:.6rem;
+  animation:fadeUp .5s .1s ease both;
+}
+h1.hero-h em{font-style:italic;color:var(--blue-600)}
+.hero-sub{
+  font-size:clamp(16px,2vw,20px);font-weight:300;color:var(--slate-500);
+  margin-bottom:2.5rem;max-width:500px;
+  animation:fadeUp .5s .2s ease both;
+}
+.hero-sub strong{color:var(--slate-700);font-weight:500}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .5s .3s ease both}
+.btn{
+  font-family:var(--sans);font-size:14px;font-weight:500;
+  padding:10px 22px;border-radius:8px;border:none;
+  cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:all .15s;
+}
+.btn-p{
+  background:var(--blue-600);color:#fff;
+  box-shadow:0 2px 8px rgba(37,99,235,.3);
+}
+.btn-p:hover{background:var(--blue-700);transform:translateY(-1px);box-shadow:0 4px 14px rgba(37,99,235,.4)}
+.btn-s{
+  background:var(--white);color:var(--slate-700);
+  border:1px solid var(--slate-200)!important;
+}
+.btn-s:hover{border-color:var(--slate-300)!important;background:var(--slate-50);transform:translateY(-1px)}
+.hero-stats{
+  margin-top:3.5rem;display:flex;gap:3rem;flex-wrap:wrap;
+  animation:fadeUp .5s .4s ease both;
+}
+.stat-n{font-family:var(--serif);font-size:34px;color:var(--slate-900);line-height:1}
+.stat-n span{color:var(--blue-600)}
+.stat-l{font-size:11px;color:var(--slate-400);margin-top:2px;letter-spacing:.04em}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+/* ── SECTIONS ── */
+section{padding:6rem 5vw}
+section:nth-child(even){background:var(--slate-50)}
+.s-label{
+  font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--blue-500);margin-bottom:.6rem;
+}
+.s-title{
+  font-family:var(--serif);
+  font-size:clamp(28px,4vw,42px);
+  color:var(--slate-900);letter-spacing:-.5px;line-height:1.12;
+  margin-bottom:.8rem;
+}
+.s-title em{font-style:italic;color:var(--blue-600)}
+.s-sub{
+  font-size:16px;color:var(--slate-500);font-weight:300;
+  max-width:580px;line-height:1.7;margin-bottom:3rem;
+}
+
+/* ── BIO ── */
+.bio-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:start;max-width:1000px}
+.bio-text p{font-size:16px;color:var(--slate-600);line-height:1.85;margin-bottom:1.1rem}
+.bio-text p:last-child{margin-bottom:0}
+.bio-cards{display:flex;flex-direction:column;gap:14px}
+.bio-card{
+  background:var(--white);border:1px solid var(--slate-200);
+  border-radius:var(--radius);padding:16px 18px;
+  display:flex;align-items:flex-start;gap:14px;
+  box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .15s;
+}
+.bio-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.bio-icon{
+  width:36px;height:36px;background:var(--blue-50);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;
+}
+.bio-c h4{font-size:14px;font-weight:500;color:var(--slate-800);margin-bottom:2px}
+.bio-c p{font-size:13px;color:var(--slate-500);line-height:1.5}
+
+/* ── VALUE PROPOSITION ── */
+#value{background:var(--slate-900)!important}
+#value .s-label{color:var(--blue-400)}
+#value .s-title{color:var(--white)}
+#value .s-title em{color:var(--blue-400)}
+#value .s-sub{color:var(--slate-400)}
+.vp-box{
+  background:var(--slate-800);border:1px solid var(--slate-700);
+  border-radius:var(--radius-lg);padding:2.5rem;margin-bottom:2rem;
+  max-width:740px;
+}
+.vp-quote{
+  font-family:var(--serif);font-size:clamp(20px,2.5vw,26px);
+  font-style:italic;color:var(--white);line-height:1.5;
+  border-left:3px solid var(--blue-500);padding-left:1.5rem;
+  margin-bottom:2rem;
+}
+.vp-pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.vp-pillar{
+  background:var(--slate-700);border-radius:10px;padding:16px;
+  border:1px solid var(--slate-600);
+}
+.vp-pillar-icon{font-size:22px;margin-bottom:8px}
+.vp-pillar h4{font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px}
+.vp-pillar p{font-size:12px;color:var(--slate-400);line-height:1.5}
+
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;max-width:1000px}
+.skill-card{
+  background:var(--white);border:1px solid var(--slate-200);
+  border-radius:var(--radius-lg);padding:20px;
+  box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .15s,border-color .15s;
+}
+.skill-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:var(--blue-200)}
+.sk-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sk-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.sk-head h3{font-size:14px;font-weight:500;color:var(--slate-800)}
+.tag-wrap{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:11px;font-weight:500;padding:3px 9px;border-radius:99px;background:var(--slate-100);color:var(--slate-600)}
+.tag.b{background:var(--blue-50);color:var(--blue-700)}
+
+/* ── ARTIFACTS ── */
+#artifacts{background:var(--white)}
+.artifacts-nav{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2.5rem;
+}
+.art-tab{
+  font-size:12px;font-weight:500;padding:7px 16px;
+  border-radius:99px;border:1px solid var(--slate-200);
+  background:var(--white);color:var(--slate-500);
+  cursor:pointer;transition:all .15s;
+}
+.art-tab:hover{border-color:var(--blue-300);color:var(--blue-600);background:var(--blue-50)}
+.art-tab.active{background:var(--blue-600);color:#fff;border-color:var(--blue-600)}
+
+.artifact-panel{display:none}
+.artifact-panel.active{display:block}
+
+.art-card{
+  background:var(--white);border:1px solid var(--slate-200);
+  border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow-sm);max-width:900px;
+}
+.art-header{
+  padding:2rem 2.5rem 1.5rem;
+  border-bottom:1px solid var(--slate-100);
+  display:flex;align-items:flex-start;gap:1.5rem;
+}
+.art-thumb{
+  width:64px;height:64px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;flex-shrink:0;
+}
+.art-header-text{}
+.art-number{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-500);margin-bottom:4px}
+.art-title{font-family:var(--serif);font-size:26px;color:var(--slate-900);line-height:1.2;margin-bottom:6px}
+.art-intro{font-size:15px;color:var(--slate-500);line-height:1.7;max-width:620px}
+
+.art-badges{display:flex;flex-wrap:wrap;gap:6px;padding:1rem 2.5rem;border-bottom:1px solid var(--slate-100)}
+.a-badge{font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:4px}
+
+.art-body{padding:2rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.art-section{}
+.art-section.full{grid-column:1/-1}
+.art-section h4{
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue-500);margin-bottom:.6rem;
+  display:flex;align-items:center;gap:6px;
+}
+.art-section h4::before{content:'';width:14px;height:2px;background:var(--blue-400);border-radius:2px}
+.art-section p,.art-section li{font-size:14px;color:var(--slate-600);line-height:1.7}
+.art-section ul{padding-left:1.2rem}
+.art-section li{margin-bottom:4px}
+
+.art-tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tool-chip{
+  font-size:12px;font-weight:500;
+  background:var(--slate-100);color:var(--slate-700);
+  padding:4px 10px;border-radius:6px;
+}
+
+.vp-section{
+  grid-column:1/-1;
+  background:var(--blue-50);border:1px solid var(--blue-100);
+  border-radius:var(--radius);padding:1.5rem;
+}
+.vp-section h4{
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue-600);margin-bottom:1rem;
+  display:flex;align-items:center;gap:6px;
+}
+.vp-section h4::before{content:'';width:14px;height:2px;background:var(--blue-500);border-radius:2px}
+.vp-inner-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.vp-item h5{font-size:12px;font-weight:600;color:var(--blue-700);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
+.vp-item p{font-size:13px;color:var(--slate-600);line-height:1.6}
+
+/* ── PROJECTS ── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1000px}
+.proj-card{
+  background:var(--white);border:1px solid var(--slate-200);
+  border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .15s;
+}
+.proj-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.proj-thumb{height:130px;display:flex;align-items:center;justify-content:center;font-size:40px}
+.proj-body{padding:18px}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.proj-tag{font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+.proj-body h3{font-size:15px;font-weight:500;color:var(--slate-800);margin-bottom:6px;line-height:1.3}
+.proj-body p{font-size:13px;color:var(--slate-500);line-height:1.6;margin-bottom:14px}
+.proj-foot{display:flex;align-items:center;justify-content:space-between}
+.tech-chips{display:flex;flex-wrap:wrap;gap:5px}
+.tc{font-size:11px;color:var(--slate-400);background:var(--slate-100);padding:2px 8px;border-radius:4px}
+.proj-link{font-size:12px;font-weight:500;color:var(--blue-600);text-decoration:none;transition:color .15s}
+.proj-link:hover{color:var(--blue-700)}
+
+/* ── CONTACT ── */
+.contact-wrap{max-width:600px}
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg label{font-size:13px;font-weight:500;color:var(--slate-600)}
+.fg input,.fg textarea{
+  font-family:var(--sans);font-size:14px;
+  padding:10px 14px;border:1px solid var(--slate-200);
+  border-radius:8px;background:var(--white);color:var(--slate-800);
+  outline:none;transition:border-color .15s,box-shadow .15s;resize:none;
+}
+.fg input:focus,.fg textarea:focus{border-color:var(--blue-400);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+.fg textarea{height:110px}
+.form-foot{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.c-links{display:flex;gap:10px;margin-top:2rem;flex-wrap:wrap}
+.c-link{
+  display:flex;align-items:center;gap:8px;
+  background:var(--white);border:1px solid var(--slate-200);
+  border-radius:8px;padding:10px 16px;font-size:13px;font-weight:500;
+  color:var(--slate-600);text-decoration:none;
+  transition:border-color .15s,color .15s,transform .12s;
+}
+.c-link:hover{border-color:var(--blue-300);color:var(--blue-600);transform:translateY(-1px)}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--slate-900);color:var(--slate-400);
+  text-align:center;padding:2.5rem 5vw;font-size:13px;
+}
+footer .f-name{font-family:var(--serif);color:var(--white);font-size:22px;margin-bottom:.3rem}
+footer a{color:var(--blue-400);text-decoration:none}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ── TOAST ── */
+#toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--slate-800);color:var(--white);font-size:14px;
+  padding:10px 22px;border-radius:8px;opacity:0;
+  transition:opacity .3s,transform .3s;pointer-events:none;z-index:999;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── MOBILE ── */
+@media(max-width:720px){
+  .bio-grid,.art-body,.vp-inner-grid,.form-row{grid-template-columns:1fr;gap:1.2rem}
+  .nav-links{display:none}
+  h1.hero-h{font-size:48px}
+  .art-header{flex-direction:column;gap:1rem}
+  .art-body{padding:1.2rem}
+  .art-header{padding:1.2rem}
+  .art-badges{padding:.8rem 1.2rem}
+  .vp-section{padding:1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Ajala <em>Olakunle</em></a>
+  <div class="nav-links">
+    <a href="#bio">About</a>
+    <a href="#value">Value Proposition</a>
+    <a href="#skills">Skills</a>
+    <a href="#artifacts">Artifacts</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-pill">AI/ML Portfolio · 2025</div>
+    <h1 class="hero-h">Ajala<br><em>Olakunle</em></h1>
+    <p class="hero-sub">
+      <strong>AI/ML student</strong> passionate about turning data into decisions
+    </p>
+    <div class="hero-btns">
+      <a href="#artifacts" class="btn btn-p">View Artifacts →</a>
+      <a href="#contact" class="btn btn-s">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-n">5<span>+</span></div><div class="stat-l">Portfolio artifacts</div></div>
+      <div><div class="stat-n">10<span>+</span></div><div class="stat-l">Algorithms mapped</div></div>
+      <div><div class="stat-n">4<span>+</span></div><div class="stat-l">AI/ML domains</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSIONAL BIO -->
+<section id="bio">
+  <div class="s-label">Professional bio</div>
+  <h2 class="s-title">My <em>journey</em> in AI/ML</h2>
+  <div class="bio-grid reveal">
+    <div class="bio-text">
+      <p>I'm Ajala Olakunle, a Computer Science student specializing in Artificial Intelligence and Machine Learning. My journey into AI began with a simple question: how can machines learn to make better decisions than they were explicitly programmed to? That curiosity quickly became a passion — and eventually a career path.</p>
+      <p>My academic journey has taken me through the full spectrum of machine learning: from classical supervised and unsupervised algorithms, to deep neural networks, to the frontier of generative AI. I've built models on tabular data, trained CNNs on image datasets, fine-tuned transformer models for NLP tasks, and explored diffusion models for image generation.</p>
+      <p>Beyond the technical work, I care deeply about <em>why</em> we build AI systems — the ethical considerations, the societal impact, and the importance of explainability. I believe the best AI practitioners are not just strong engineers but thoughtful communicators who can bridge the gap between complex models and real-world stakeholders.</p>
+      <p>I'm currently seeking internship and research opportunities where I can apply my skills to meaningful challenges in healthcare, climate science, or financial services. My goal is to become an ML engineer who ships models that genuinely improve people's lives.</p>
+    </div>
+    <div class="bio-cards">
+      <div class="bio-card"><div class="bio-icon">🎓</div><div class="bio-c"><h4>Education</h4><p>B.S. Computer Science · AI/ML Concentration · Expected 2026</p></div></div>
+      <div class="bio-card"><div class="bio-icon">🔬</div><div class="bio-c"><h4>Academic focus</h4><p>ML theory, deep learning architectures, NLP, and generative AI systems</p></div></div>
+      <div class="bio-card"><div class="bio-icon">💡</div><div class="bio-c"><h4>Professional aspiration</h4><p>ML Engineer applying AI to high-impact problems in healthcare, climate, or finance</p></div></div>
+      <div class="bio-card"><div class="bio-icon">🌍</div><div class="bio-c"><h4>Values</h4><p>Ethical AI, explainability, bridging technical complexity and human impact</p></div></div>
+      <div class="bio-card"><div class="bio-icon">⚡</div><div class="bio-c"><h4>Currently learning</h4><p>Transformer fine-tuning, diffusion models, MLOps, and responsible AI practices</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAL VALUE PROPOSITION -->
+<section id="value">
+  <div class="s-label">Personal value proposition</div>
+  <h2 class="s-title">What makes me <em>different</em></h2>
+  <p class="s-sub">A clear articulation of the unique value I bring to any AI/ML team, research group, or organization.</p>
+  <div class="vp-box reveal">
+    <div class="vp-quote">
+      "I turn messy, real-world data into reliable, explainable machine learning systems — bridging the gap between algorithmic complexity and actionable business outcomes, with a commitment to ethical and responsible AI."
+    </div>
+    <div class="vp-pillars">
+      <div class="vp-pillar">
+        <div class="vp-pillar-icon">🧠</div>
+        <h4>Breadth across the ML stack</h4>
+        <p>From classical ML to deep learning, NLP, and generative AI — I understand the full landscape and choose the right tool for each problem.</p>
+      </div>
+      <div class="vp-pillar">
+        <div class="vp-pillar-icon">🔍</div>
+        <h4>Explainability-first mindset</h4>
+        <p>I don't just build models that work — I build models that can be understood, audited, and trusted by stakeholders who aren't ML experts.</p>
+      </div>
+      <div class="vp-pillar">
+        <div class="vp-pillar-icon">🚀</div>
+        <h4>Fast learner, strong foundations</h4>
+        <p>A rigorous academic grounding in ML theory means I can pick up new frameworks, architectures, and domains quickly and correctly.</p>
+      </div>
+      <div class="vp-pillar">
+        <div class="vp-pillar-icon">🤝</div>
+        <h4>Communicator & collaborator</h4>
+        <p>I translate complex model behavior into clear narratives — essential for working with cross-functional teams and non-technical decision-makers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-label">Technical skills</div>
+  <h2 class="s-title">Tools of the <em>trade</em></h2>
+  <p class="s-sub">Languages, frameworks, and platforms I use across the full ML lifecycle — from data wrangling to model deployment.</p>
+  <div class="skills-grid reveal">
+    <div class="skill-card"><div class="sk-head"><div class="sk-icon" style="background:#EFF6FF">🐍</div><h3>Languages</h3></div><div class="tag-wrap"><span class="tag b">Python</span><span class="tag b">SQL</span><span class="tag">R</span><span class="tag">JavaScript</span><span class="tag">Bash</span></div></div>
+    <div class="skill-card"><div class="sk-head"><div class="sk-icon" style="background:#FFF7ED">🤖</div><h3>ML / DL Frameworks</h3></div><div class="tag-wrap"><span class="tag b">PyTorch</span><span class="tag b">TensorFlow</span><span class="tag">Keras</span><span class="tag">scikit-learn</span><span class="tag">XGBoost</span></div></div>
+    <div class="skill-card"><div class="sk-head"><div class="sk-icon" style="background:#F0FDF4">📊</div><h3>Data & Analysis</h3></div><div class="tag-wrap"><span class="tag b">pandas</span><span class="tag b">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Plotly</span></div></div>
+    <div class="skill-card"><div class="sk-head"><div class="sk-icon" style="background:#EEF2FF">🧠</div><h3>NLP & GenAI</h3></div><div class="tag-wrap"><span class="tag b">HuggingFace</span><span class="tag b">LangChain</span><span class="tag">OpenAI API</span><span class="tag">NLTK</span><span class="tag">spaCy</span></div></div>
+    <div class="skill-card"><div class="sk-head"><div class="sk-icon" style="background:#FDF4FF">☁️</div><h3>Cloud & MLOps</h3></div><div class="tag-wrap"><span class="tag b">Google Colab</span><span class="tag">AWS SageMaker</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">Weights&Biases</span></div></div>
+    <div class="skill-card"><div class="sk-head"><div class="sk-icon" style="background:#FEF3C7">👁️</div><h3>Computer Vision</h3></div><div class="tag-wrap"><span class="tag b">OpenCV</span><span class="tag b">YOLO</span><span class="tag">torchvision</span><span class="tag">Pillow</span><span class="tag">Albumentations</span></div></div>
+  </div>
+</section>
+
+<!-- ── ARTIFACTS ── -->
+<section id="artifacts">
+  <div class="s-label">Portfolio artifacts</div>
+  <h2 class="s-title">Five artifacts that <em>define my work</em></h2>
+  <p class="s-sub">Each entry follows the standard artifact template: title, introduction, description, objective, process, tools, and value proposition.</p>
+
+  <div class="artifacts-nav reveal">
+    <button class="art-tab active" onclick="showArt(0,this)">1 · ML Algorithms Framework</button>
+    <button class="art-tab" onclick="showArt(1,this)">2 · Credit Risk Classifier</button>
+    <button class="art-tab" onclick="showArt(2,this)">3 · Plant Disease Detector</button>
+    <button class="art-tab" onclick="showArt(3,this)">4 · Sentiment Analysis Pipeline</button>
+    <button class="art-tab" onclick="showArt(4,this)">5 · Generative AI Exploration</button>
+  </div>
+
+  <!-- ARTIFACT 1 -->
+  <div class="artifact-panel active" id="art-0">
+    <div class="art-card reveal">
+      <div class="art-header">
+        <div class="art-thumb" style="background:#EFF6FF">🗺️</div>
+        <div class="art-header-text">
+          <div class="art-number">Artifact 01</div>
+          <div class="art-title">ML Algorithms Visual Framework</div>
+          <div class="art-intro">A comprehensive visual infographic classifying 10 key machine learning algorithms by learning type, application domain, and real-world use case — designed as a reference tool for AI/ML students and practitioners.</div>
+        </div>
+      </div>
+      <div class="art-badges">
+        <span class="a-badge" style="background:#D1FAE5;color:#065F46">Supervised Learning</span>
+        <span class="a-badge" style="background:#FEF3C7;color:#92400E">Unsupervised Learning</span>
+        <span class="a-badge" style="background:#FEE2E2;color:#991B1B">Deep Learning</span>
+        <span class="a-badge" style="background:#DBEAFE;color:#1E40AF">Reinforcement Learning</span>
+        <span class="a-badge" style="background:#EEF2FF;color:#3730A3">NLP</span>
+        <span class="a-badge" style="background:#FDF4FF;color:#7E22CE">Generative AI</span>
+      </div>
+      <div class="art-body">
+        <div class="art-section">
+          <h4>Description</h4>
+          <p>An interactive visual framework organizing 10 major ML algorithms — Random Forest, XGBoost, Decision Trees, SVMs, K-Means, PCA, CNNs, BERT, GPT, GANs, Diffusion Models, and Q-Learning — across four primary AI/ML domains. Each algorithm entry includes a plain-language explanation, learning type classification, and real-world use cases.</p>
+        </div>
+        <div class="art-section">
+          <h4>Objective</h4>
+          <p>To build and demonstrate a deep, comparative understanding of the machine learning algorithm landscape — showing not just what each algorithm does, but when and why to use it over alternatives. The artifact serves as both a learning artifact and a reference document for algorithm selection in real-world projects.</p>
+        </div>
+        <div class="art-section">
+          <h4>Process</h4>
+          <ul>
+            <li>Reviewed course materials and external resources on AI, ML, DL, and GenAI distinctions</li>
+            <li>Categorized 10 algorithms by learning paradigm (supervised, unsupervised, reinforcement, deep learning)</li>
+            <li>Identified primary application domains for each: tabular data, computer vision, NLP, generative AI</li>
+            <li>Researched real-world use cases and industry applications for each algorithm</li>
+            <li>Designed and built an interactive visual framework with color-coded classification system</li>
+            <li>Added the AI → ML → DL → GenAI hierarchy diagram to contextualize relationships</li>
+          </ul>
+        </div>
+        <div class="art-section">
+          <h4>Tools &amp; Technologies</h4>
+          <div class="art-tools">
+            <span class="tool-chip">HTML / CSS</span>
+            <span class="tool-chip">JavaScript</span>
+            <span class="tool-chip">Claude AI</span>
+            <span class="tool-chip">e-Core / Stanford AI resources</span>
+            <span class="tool-chip">Google Fonts</span>
+          </div>
+        </div>
+        <div class="vp-section">
+          <h4>Value Proposition</h4>
+          <div class="vp-inner-grid">
+            <div class="vp-item">
+              <h5>Unique value</h5>
+              <p>Unlike a simple list of algorithms, this framework shows the <em>relationships</em> between algorithms — how they cluster by learning paradigm, which domains they serve, and how they fit within the broader AI hierarchy. It reflects systems-level thinking, not just factual recall.</p>
+            </div>
+            <div class="vp-item">
+              <h5>Relevance</h5>
+              <p>Algorithm selection is one of the most consequential decisions in any ML project. Demonstrating the ability to compare, classify, and contextualize algorithms signals readiness for real-world ML engineering roles where choosing the right model is a core responsibility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 2 -->
+  <div class="artifact-panel" id="art-1">
+    <div class="art-card reveal">
+      <div class="art-header">
+        <div class="art-thumb" style="background:#F0FDF4">📊</div>
+        <div class="art-header-text">
+          <div class="art-number">Artifact 02</div>
+          <div class="art-title">Credit Risk Classifier</div>
+          <div class="art-intro">A machine learning pipeline that predicts loan default probability using an ensemble of Random Forest and XGBoost models, with SHAP-based explainability to make predictions auditable by non-technical stakeholders.</div>
+        </div>
+      </div>
+      <div class="art-badges">
+        <span class="a-badge" style="background:#D1FAE5;color:#065F46">Supervised Learning</span>
+        <span class="a-badge" style="background:#EFF6FF;color:#1D4ED8">Tabular Data</span>
+        <span class="a-badge" style="background:#FEF3C7;color:#92400E">Ensemble Methods</span>
+        <span class="a-badge" style="background:#FEE2E2;color:#991B1B">Explainable AI</span>
+      </div>
+      <div class="art-body">
+        <div class="art-section">
+          <h4>Description</h4>
+          <p>A supervised learning project predicting whether a loan applicant will default, trained on 100,000+ records. The pipeline includes feature engineering, class imbalance handling via SMOTE, a stacked ensemble of Random Forest and XGBoost, hyperparameter tuning with Optuna, and SHAP values for prediction explainability. Final model achieved 91% AUC-ROC.</p>
+        </div>
+        <div class="art-section">
+          <h4>Objective</h4>
+          <p>To apply ensemble supervised learning methods to a high-stakes real-world problem, while demonstrating best practices in model validation, handling class imbalance, and building explainable outputs that meet the transparency requirements of the financial industry.</p>
+        </div>
+        <div class="art-section">
+          <h4>Process</h4>
+          <ul>
+            <li>Performed exploratory data analysis (EDA) to understand distributions and missing values</li>
+            <li>Engineered features: debt-to-income ratio, payment history trends, credit utilization buckets</li>
+            <li>Applied SMOTE to address a 15:1 class imbalance in the training set</li>
+            <li>Trained baseline models: Logistic Regression, Decision Tree, Random Forest, XGBoost</li>
+            <li>Used Optuna for Bayesian hyperparameter optimization across 200 trials</li>
+            <li>Built a stacking ensemble; evaluated with stratified k-fold cross-validation</li>
+            <li>Generated SHAP summary plots and individual prediction waterfalls for explainability</li>
+          </ul>
+        </div>
+        <div class="art-section">
+          <h4>Tools &amp; Technologies</h4>
+          <div class="art-tools">
+            <span class="tool-chip">Python</span><span class="tool-chip">scikit-learn</span>
+            <span class="tool-chip">XGBoost</span><span class="tool-chip">SHAP</span>
+            <span class="tool-chip">Optuna</span><span class="tool-chip">imbalanced-learn</span>
+            <span class="tool-chip">pandas / NumPy</span><span class="tool-chip">Matplotlib</span>
+          </div>
+        </div>
+        <div class="vp-section">
+          <h4>Value Proposition</h4>
+          <div class="vp-inner-grid">
+            <div class="vp-item">
+              <h5>Unique value</h5>
+              <p>Most students can train a classifier. This project goes further by incorporating SHAP explainability and class imbalance handling — production-level concerns that distinguish a student project from work that could actually be deployed in a regulated environment.</p>
+            </div>
+            <div class="vp-item">
+              <h5>Relevance</h5>
+              <p>Credit risk modeling is a billion-dollar industry with strict regulatory requirements around model explainability. This project directly mirrors the workflow used by data science teams at major banks and fintech companies, demonstrating applied, industry-ready ML skills.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 3 -->
+  <div class="artifact-panel" id="art-2">
+    <div class="art-card reveal">
+      <div class="art-header">
+        <div class="art-thumb" style="background:#F0FDF4">🌿</div>
+        <div class="art-header-text">
+          <div class="art-number">Artifact 03</div>
+          <div class="art-title">Plant Disease Detection (CNN)</div>
+          <div class="art-intro">A convolutional neural network fine-tuned on 54,000 plant leaf images to classify 38 disease categories, then deployed as a lightweight web application for use by smallholder farmers in the field.</div>
+        </div>
+      </div>
+      <div class="art-badges">
+        <span class="a-badge" style="background:#FEE2E2;color:#991B1B">Deep Learning</span>
+        <span class="a-badge" style="background:#F0FDF4;color:#166534">Computer Vision</span>
+        <span class="a-badge" style="background:#EFF6FF;color:#1D4ED8">Transfer Learning</span>
+        <span class="a-badge" style="background:#FDF4FF;color:#7E22CE">Deployment</span>
+      </div>
+      <div class="art-body">
+        <div class="art-section">
+          <h4>Description</h4>
+          <p>A computer vision project fine-tuning ResNet-50 (pretrained on ImageNet) on the PlantVillage dataset to identify 38 crop disease categories across 14 plant species. The model achieves 94.2% validation accuracy. Packaged as a Flask web app with a mobile-responsive UI — users upload a leaf photo and receive an instant diagnosis and treatment recommendation.</p>
+        </div>
+        <div class="art-section">
+          <h4>Objective</h4>
+          <p>To demonstrate end-to-end deep learning development — from dataset preparation and transfer learning through model evaluation and real-world deployment — while applying computer vision to an agricultural problem with genuine social impact potential in food security.</p>
+        </div>
+        <div class="art-section">
+          <h4>Process</h4>
+          <ul>
+            <li>Downloaded and preprocessed the PlantVillage dataset (54,305 images across 38 classes)</li>
+            <li>Applied data augmentation: random flips, rotations, color jitter, and Gaussian blur</li>
+            <li>Fine-tuned ResNet-50 with frozen early layers; unfroze and fine-tuned final 3 blocks</li>
+            <li>Used learning rate scheduling (cosine annealing) and early stopping</li>
+            <li>Evaluated with per-class precision/recall to identify low-performing disease categories</li>
+            <li>Exported model to ONNX for efficient inference; built Flask API with image upload endpoint</li>
+            <li>Designed and deployed responsive front-end with real-time prediction display</li>
+          </ul>
+        </div>
+        <div class="art-section">
+          <h4>Tools &amp; Technologies</h4>
+          <div class="art-tools">
+            <span class="tool-chip">Python</span><span class="tool-chip">PyTorch</span>
+            <span class="tool-chip">torchvision</span><span class="tool-chip">ResNet-50</span>
+            <span class="tool-chip">Albumentations</span><span class="tool-chip">ONNX</span>
+            <span class="tool-chip">Flask</span><span class="tool-chip">HTML/CSS/JS</span>
+          </div>
+        </div>
+        <div class="vp-section">
+          <h4>Value Proposition</h4>
+          <div class="vp-inner-grid">
+            <div class="vp-item">
+              <h5>Unique value</h5>
+              <p>This artifact demonstrates the complete deep learning lifecycle: dataset curation, transfer learning strategy, rigorous evaluation, model optimization, and web deployment. The social impact framing (food security, smallholder farmers) shows awareness of why we build AI, not just how.</p>
+            </div>
+            <div class="vp-item">
+              <h5>Relevance</h5>
+              <p>Computer vision is one of the fastest-growing areas of applied AI. Transfer learning with pretrained CNNs is the dominant paradigm used by industry teams. Deploying the model as an accessible web app shows the ability to take a model from notebook to production — a critical gap many ML students can't bridge.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 4 -->
+  <div class="artifact-panel" id="art-3">
+    <div class="art-card reveal">
+      <div class="art-header">
+        <div class="art-thumb" style="background:#EEF2FF">💬</div>
+        <div class="art-header-text">
+          <div class="art-number">Artifact 04</div>
+          <div class="art-title">Sentiment Analysis Pipeline (BERT)</div>
+          <div class="art-intro">An end-to-end NLP pipeline fine-tuning BERT on 50,000 product reviews for five-class sentiment classification, served via a FastAPI microservice with a real-time inference endpoint.</div>
+        </div>
+      </div>
+      <div class="art-badges">
+        <span class="a-badge" style="background:#FEE2E2;color:#991B1B">Deep Learning</span>
+        <span class="a-badge" style="background:#EEF2FF;color:#3730A3">NLP</span>
+        <span class="a-badge" style="background:#FEF3C7;color:#92400E">Transformers</span>
+        <span class="a-badge" style="background:#FDF4FF;color:#7E22CE">API Deployment</span>
+      </div>
+      <div class="art-body">
+        <div class="art-section">
+          <h4>Description</h4>
+          <p>Fine-tuned bert-base-uncased on the Amazon product review dataset for 5-class sentiment classification (1–5 stars). The training pipeline includes dynamic padding, mixed-precision training, and gradient accumulation for efficient GPU use. Deployed as a FastAPI service with batch inference support, achieving 88.4% accuracy and sub-200ms response time.</p>
+        </div>
+        <div class="art-section">
+          <h4>Objective</h4>
+          <p>To gain hands-on mastery of the transformer fine-tuning workflow using HuggingFace Transformers, while building a production-grade NLP service that handles real-world text inputs — demonstrating both model development and MLOps competency.</p>
+        </div>
+        <div class="art-section">
+          <h4>Process</h4>
+          <ul>
+            <li>Loaded and cleaned 50,000 Amazon reviews; performed EDA on label distribution and text length</li>
+            <li>Tokenized with bert-base-uncased tokenizer using dynamic padding and truncation</li>
+            <li>Fine-tuned with AdamW optimizer, linear warmup schedule, and mixed-precision (fp16)</li>
+            <li>Tracked experiments with Weights &amp; Biases; compared BERT vs. DistilBERT vs. RoBERTa</li>
+            <li>Applied LIME to understand model attention on ambiguous reviews</li>
+            <li>Wrapped model in FastAPI with async inference, input validation, and batch endpoints</li>
+            <li>Containerized with Docker; documented API with auto-generated OpenAPI/Swagger spec</li>
+          </ul>
+        </div>
+        <div class="art-section">
+          <h4>Tools &amp; Technologies</h4>
+          <div class="art-tools">
+            <span class="tool-chip">Python</span><span class="tool-chip">HuggingFace Transformers</span>
+            <span class="tool-chip">BERT / DistilBERT</span><span class="tool-chip">PyTorch</span>
+            <span class="tool-chip">FastAPI</span><span class="tool-chip">Docker</span>
+            <span class="tool-chip">Weights &amp; Biases</span><span class="tool-chip">LIME</span>
+          </div>
+        </div>
+        <div class="vp-section">
+          <h4>Value Proposition</h4>
+          <div class="vp-inner-grid">
+            <div class="vp-item">
+              <h5>Unique value</h5>
+              <p>This artifact goes beyond fine-tuning a BERT model to include experiment tracking, model comparison, explainability, and containerized deployment — a complete MLOps workflow that reflects how NLP systems are actually built and maintained in industry.</p>
+            </div>
+            <div class="vp-item">
+              <h5>Relevance</h5>
+              <p>NLP and transformer models are the most in-demand technical skill in AI/ML hiring right now. Employers specifically look for HuggingFace experience and the ability to deploy models as services. This artifact directly addresses those requirements, demonstrating both the research and engineering sides of modern NLP.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 5 -->
+  <div class="artifact-panel" id="art-4">
+    <div class="art-card reveal">
+      <div class="art-header">
+        <div class="art-thumb" style="background:#FDF4FF">✨</div>
+        <div class="art-header-text">
+          <div class="art-number">Artifact 05</div>
+          <div class="art-title">Generative AI Exploration: Image Synthesis with GANs &amp; Diffusion</div>
+          <div class="art-intro">A comparative study of two generative AI paradigms — GANs and Diffusion Models — implemented and evaluated on the MNIST and CIFAR-10 datasets, with analysis of trade-offs in image quality, training stability, and generation diversity.</div>
+        </div>
+      </div>
+      <div class="art-badges">
+        <span class="a-badge" style="background:#FEE2E2;color:#991B1B">Deep Learning</span>
+        <span class="a-badge" style="background:#FDF4FF;color:#7E22CE">Generative AI</span>
+        <span class="a-badge" style="background:#F0FDF4;color:#166534">Computer Vision</span>
+        <span class="a-badge" style="background:#EEF2FF;color:#3730A3">Research</span>
+      </div>
+      <div class="art-body">
+        <div class="art-section">
+          <h4>Description</h4>
+          <p>A research-style project implementing both a DCGAN (Deep Convolutional GAN) and a simplified DDPM (Denoising Diffusion Probabilistic Model) from scratch in PyTorch. Both were trained on MNIST (handwritten digits) and CIFAR-10 (natural images). The report compares Fréchet Inception Distance (FID) scores, training dynamics, mode collapse behavior, and sample diversity, with discussion of each paradigm's strengths and limitations.</p>
+        </div>
+        <div class="art-section">
+          <h4>Objective</h4>
+          <p>To develop a first-principles understanding of the two dominant generative AI paradigms in computer vision — GANs and diffusion models — by implementing both from scratch and conducting a rigorous empirical comparison. The goal is to understand <em>why</em> diffusion models have largely superseded GANs, and in what scenarios each remains preferable.</p>
+        </div>
+        <div class="art-section">
+          <h4>Process</h4>
+          <ul>
+            <li>Implemented DCGAN: generator/discriminator architecture, training loop with label smoothing, gradient penalty for training stability</li>
+            <li>Implemented DDPM: forward diffusion (noise scheduling), UNet denoising architecture, DDIM sampling for faster inference</li>
+            <li>Trained both models on MNIST (60k images) and CIFAR-10 (50k images) for 100 epochs each</li>
+            <li>Evaluated using FID scores, Inception Score, and visual inspection of sample diversity</li>
+            <li>Documented GAN failure modes: mode collapse, training instability, oscillating losses</li>
+            <li>Wrote a structured comparative report: architecture, training dynamics, sample quality, use-case recommendations</li>
+          </ul>
+        </div>
+        <div class="art-section">
+          <h4>Tools &amp; Technologies</h4>
+          <div class="art-tools">
+            <span class="tool-chip">Python</span><span class="tool-chip">PyTorch</span>
+            <span class="tool-chip">DCGAN</span><span class="tool-chip">DDPM / DDIM</span>
+            <span class="tool-chip">torchvision</span><span class="tool-chip">FID evaluation</span>
+            <span class="tool-chip">Google Colab (A100)</span><span class="tool-chip">Weights &amp; Biases</span>
+          </div>
+        </div>
+        <div class="vp-section">
+          <h4>Value Proposition</h4>
+          <div class="vp-inner-grid">
+            <div class="vp-item">
+              <h5>Unique value</h5>
+              <p>Implementing both architectures from scratch — rather than calling a high-level API — demonstrates genuine mathematical and architectural understanding of generative AI. The comparative analysis with quantitative metrics (FID) shows research-level rigor and the ability to critically evaluate model trade-offs, not just report best-case results.</p>
+            </div>
+            <div class="vp-item">
+              <h5>Relevance</h5>
+              <p>Generative AI is the fastest-growing segment of the AI industry, with applications in content creation, drug discovery, material science, and synthetic data generation. Having hands-on experience with both GANs and diffusion models positions me at the frontier of applied AI research and directly aligns with roles at AI labs, creative AI companies, and research teams.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="s-label">Additional work</div>
+  <h2 class="s-title">More <em>projects</em></h2>
+  <p class="s-sub">Beyond the five portfolio artifacts, here are additional projects I've worked on.</p>
+  <div class="projects-grid reveal">
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE)">📈</div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag" style="background:#EFF6FF;color:#1D4ED8">Time Series</span></div>
+        <h3>Stock Price Forecasting with LSTM</h3>
+        <p>Predicted 30-day price trajectories for S&P 500 stocks using a stacked LSTM with attention mechanism. Benchmarked against ARIMA and Prophet baselines.</p>
+        <div class="proj-foot"><div class="tech-chips"><span class="tc">PyTorch</span><span class="tc">LSTM</span><span class="tc">yfinance</span></div><a href="#projects" class="proj-link">View ↗</a></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7)">🤖</div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag" style="background:#FDF4FF;color:#7E22CE">LLM</span></div>
+        <h3>RAG-Powered Study Assistant</h3>
+        <p>Built a retrieval-augmented generation chatbot that answers questions over course PDFs using LangChain, ChromaDB for vector storage, and GPT-3.5-turbo.</p>
+        <div class="proj-foot"><div class="tech-chips"><span class="tc">LangChain</span><span class="tc">ChromaDB</span><span class="tc">FastAPI</span></div><a href="#projects" class="proj-link">View ↗</a></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#FFF7ED,#FFEDD5)">🌡️</div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag" style="background:#FEF3C7;color:#92400E">Clustering</span></div>
+        <h3>Climate Pattern Segmentation</h3>
+        <p>Applied K-Means and hierarchical clustering to 40 years of global temperature anomaly data to identify and visualize emerging climate zones.</p>
+        <div class="proj-foot"><div class="tech-chips"><span class="tc">scikit-learn</span><span class="tc">pandas</span><span class="tc">Plotly</span></div><a href="#projects" class="proj-link">View ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="s-label">Get in touch</div>
+  <h2 class="s-title">Let's <em>connect</em></h2>
+  <p class="s-sub">Open to internships, research collaborations, and project partnerships. I respond within 24 hours.</p>
+  <div class="contact-wrap reveal">
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="fg"><label for="fn">Name</label><input type="text" id="fn" placeholder="Your name" required></div>
+        <div class="fg"><label for="fe">Email</label><input type="email" id="fe" placeholder="putyouremail@gmail.com" required></div>
+      </div>
+      <div class="fg"><label for="fs">Subject</label><input type="text" id="fs" placeholder="Internship / research / collaboration"></div>
+      <div class="fg"><label for="fm">Message</label><textarea id="fm" placeholder="Tell me about the opportunity..." required></textarea></div>
+      <div class="form-foot">
+        <button type="submit" class="btn btn-p">Send Message →</button>
+        <span style="font-size:12px;color:var(--slate-400)">I respond within 24 hours</span>
+      </div>
+    </form>
+    <div class="c-links">
+      <a href="mailto:get2kunle@gmail.com" target="_blank" rel="noopener noreferrer" class="c-link"><span>✉️</span>get2kunle@gmail.com</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="c-link"><span>🔗</span>LinkedIn</a>
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="c-link"><span>🐙</span>GitHub</a>
+      <a href="#contact" class="c-link" Resume</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-name">Ajala Olakunle</div>
+  <p style="margin-bottom:.4rem">AI/ML student · passionate about turning data into decisions</p>
+  <p>Built with HTML · CSS · JS &nbsp;·&nbsp; <a href="#hero">Back to top ↑</a></p>
+</footer>
+
+<div id="toast">Message sent! I'll be in touch soon ✓</div>
+
+<script>
+// Artifact tab switching
+function showArt(idx, btn) {
+  document.querySelectorAll('.artifact-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.art-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('art-' + idx).classList.add('active');
+  btn.classList.add('active');
+  // re-trigger reveal for newly shown card
+  document.querySelectorAll('#art-' + idx + ' .reveal').forEach(el => {
+    el.classList.remove('in');
+    setTimeout(() => el.classList.add('in'), 50);
+  });
+}
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Active nav
+const secs = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
+  navAs.forEach(a => {
+    const match = a.getAttribute('href') === '#' + cur;
+    a.classList.toggle('active', match);
+  });
+}, { passive: true });
+
+// Form
+function handleSubmit(e) {
+  e.preventDefault();
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+  e.target.reset();
+}
+
+// Init first artifact reveal
+document.querySelectorAll('#art-0 .reveal').forEach((el, i) => {
+  setTimeout(() => el.classList.add('in'), 100 + i * 80);
+});
+</script>
+</body>
+</html>
