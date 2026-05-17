@@ -274,6 +274,100 @@ section:nth-child(even){background:var(--slate-50)}
 .vp-item h5{font-size:12px;font-weight:600;color:var(--blue-700);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
 .vp-item p{font-size:13px;color:var(--slate-600);line-height:1.6}
 
+/* ── ALGORITHM VISUAL FRAMEWORK ── */
+.algo-framework{
+  grid-column:1/-1;
+  margin-top:.5rem;
+}
+.algo-framework-title{
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue-500);margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:6px;
+}
+.algo-framework-title::before{content:'';width:14px;height:2px;background:var(--blue-400);border-radius:2px}
+
+/* Hierarchy strip */
+.ai-hierarchy{
+  display:flex;align-items:center;gap:0;
+  margin-bottom:1.8rem;overflow-x:auto;
+  background:var(--slate-900);border-radius:12px;padding:18px 20px;
+}
+.hier-node{
+  display:flex;flex-direction:column;align-items:center;
+  flex:1;min-width:110px;
+}
+.hier-circle{
+  width:54px;height:54px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:7px;
+  border:2px solid rgba(255,255,255,.1);
+}
+.hier-label{font-size:12px;font-weight:600;color:var(--white);letter-spacing:.03em}
+.hier-sub{font-size:10px;color:var(--slate-400);margin-top:2px;text-align:center;max-width:90px}
+.hier-arrow{font-size:20px;color:var(--blue-400);flex-shrink:0;padding:0 4px;align-self:center;margin-bottom:20px}
+
+/* Domain tabs */
+.domain-filter{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.2rem}
+.d-tab{
+  font-size:11px;font-weight:600;padding:5px 14px;
+  border-radius:99px;cursor:pointer;border:1.5px solid transparent;
+  transition:all .15s;letter-spacing:.03em;
+}
+.d-tab.all{background:var(--slate-800);color:var(--white);border-color:var(--slate-700)}
+.d-tab.tabular{background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE}
+.d-tab.cv{background:#F0FDF4;color:#166534;border-color:#BBF7D0}
+.d-tab.nlp{background:#EEF2FF;color:#3730A3;border-color:#C7D2FE}
+.d-tab.genai{background:#FDF4FF;color:#7E22CE;border-color:#E9D5FF}
+.d-tab.rl{background:#FFF7ED;color:#92400E;border-color:#FDE68A}
+.d-tab:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+
+/* Algo cards grid */
+.algo-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:14px;
+}
+.algo-card{
+  border-radius:12px;border:1.5px solid var(--slate-200);
+  background:var(--white);padding:16px;
+  transition:box-shadow .2s,transform .15s,border-color .15s;
+  cursor:default;
+}
+.algo-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.algo-card-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;gap:8px}
+.algo-name{font-size:14px;font-weight:600;color:var(--slate-800);line-height:1.3}
+.algo-type-badge{
+  font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:1px;
+}
+.type-sup{background:#D1FAE5;color:#065F46}
+.type-unsup{background:#FEF3C7;color:#92400E}
+.type-dl{background:#FEE2E2;color:#991B1B}
+.type-rl{background:#E0F2FE;color:#075985}
+
+.algo-how{
+  font-size:12px;color:var(--slate-600);line-height:1.6;
+  margin-bottom:10px;
+  padding:8px 10px;
+  background:var(--slate-50);border-radius:7px;
+  border-left:2px solid var(--blue-300);
+}
+.algo-domains{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.algo-domain{
+  font-size:10px;font-weight:600;padding:2px 8px;
+  border-radius:4px;letter-spacing:.03em;
+}
+.dom-tabular{background:#EFF6FF;color:#1D4ED8}
+.dom-cv{background:#F0FDF4;color:#166534}
+.dom-nlp{background:#EEF2FF;color:#3730A3}
+.dom-genai{background:#FDF4FF;color:#7E22CE}
+.dom-rl{background:#FFF7ED;color:#92400E}
+
+.algo-use{font-size:11px;color:var(--slate-400);line-height:1.5}
+.algo-use strong{color:var(--slate-500);font-weight:600}
+
+.algo-card[data-hidden="true"]{display:none}
+
 /* ── PROJECTS ── */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1000px}
 .proj-card{
@@ -350,6 +444,9 @@ footer a{color:var(--blue-400);text-decoration:none}
   .art-header{padding:1.2rem}
   .art-badges{padding:.8rem 1.2rem}
   .vp-section{padding:1rem}
+  .algo-grid{grid-template-columns:1fr}
+  .ai-hierarchy{gap:0;padding:14px}
+  .hier-circle{width:44px;height:44px;font-size:18px}
 }
 </style>
 </head>
@@ -523,6 +620,215 @@ footer a{color:var(--blue-400);text-decoration:none}
             <span class="tool-chip">Google Fonts</span>
           </div>
         </div>
+
+        <!-- ══ ALGORITHM VISUAL FRAMEWORK ══ -->
+        <div class="algo-framework art-section full">
+          <div class="algo-framework-title">Interactive Algorithm Visual Framework</div>
+
+          <!-- AI → ML → DL → GenAI Hierarchy -->
+          <div class="ai-hierarchy">
+            <div class="hier-node">
+              <div class="hier-circle" style="background:#1E3A5F">🤖</div>
+              <div class="hier-label">AI</div>
+              <div class="hier-sub">Artificial Intelligence — machines that simulate human intelligence</div>
+            </div>
+            <div class="hier-arrow">→</div>
+            <div class="hier-node">
+              <div class="hier-circle" style="background:#1D4ED8">📊</div>
+              <div class="hier-label">ML</div>
+              <div class="hier-sub">Machine Learning — systems that learn from data</div>
+            </div>
+            <div class="hier-arrow">→</div>
+            <div class="hier-node">
+              <div class="hier-circle" style="background:#7C3AED">🧠</div>
+              <div class="hier-label">DL</div>
+              <div class="hier-sub">Deep Learning — multi-layer neural networks</div>
+            </div>
+            <div class="hier-arrow">→</div>
+            <div class="hier-node">
+              <div class="hier-circle" style="background:#BE185D">✨</div>
+              <div class="hier-label">GenAI</div>
+              <div class="hier-sub">Generative AI — models that create new content</div>
+            </div>
+          </div>
+
+          <!-- Domain filter -->
+          <div class="domain-filter">
+            <button class="d-tab all active" onclick="filterDomain('all',this)">All Domains</button>
+            <button class="d-tab tabular" onclick="filterDomain('tabular',this)">📊 Tabular Data</button>
+            <button class="d-tab cv" onclick="filterDomain('cv',this)">👁️ Computer Vision</button>
+            <button class="d-tab nlp" onclick="filterDomain('nlp',this)">💬 NLP</button>
+            <button class="d-tab genai" onclick="filterDomain('genai',this)">✨ Generative AI</button>
+            <button class="d-tab rl" onclick="filterDomain('rl',this)">🎮 Reinforcement Learning</button>
+          </div>
+
+          <!-- Algorithm cards -->
+          <div class="algo-grid" id="algoGrid">
+
+            <!-- 1. Random Forest -->
+            <div class="algo-card" data-domains="tabular">
+              <div class="algo-card-head">
+                <div class="algo-name">🌳 Random Forest</div>
+                <span class="algo-type-badge type-sup">Supervised</span>
+              </div>
+              <div class="algo-how">Builds hundreds of decision trees on random subsets of the data, then combines their predictions by majority vote (classification) or averaging (regression) — "wisdom of the crowd" for models.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-tabular">Tabular Data</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Fraud detection, medical diagnosis, customer churn prediction, loan approval</div>
+            </div>
+
+            <!-- 2. XGBoost -->
+            <div class="algo-card" data-domains="tabular">
+              <div class="algo-card-head">
+                <div class="algo-name">⚡ XGBoost</div>
+                <span class="algo-type-badge type-sup">Supervised</span>
+              </div>
+              <div class="algo-how">Trains decision trees sequentially — each new tree corrects the errors of the previous one — using gradient descent to minimize a loss function. Regularization prevents overfitting.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-tabular">Tabular Data</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Credit scoring, Kaggle competitions, click-through rate prediction, sales forecasting</div>
+            </div>
+
+            <!-- 3. Decision Tree -->
+            <div class="algo-card" data-domains="tabular">
+              <div class="algo-card-head">
+                <div class="algo-name">🌿 Decision Tree</div>
+                <span class="algo-type-badge type-sup">Supervised</span>
+              </div>
+              <div class="algo-how">Splits data into branches using yes/no questions on features, choosing splits that maximize information gain (reduce uncertainty). Produces a flowchart-like structure that is fully interpretable.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-tabular">Tabular Data</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Medical triage, customer segmentation, rule-based business decisions</div>
+            </div>
+
+            <!-- 4. SVM -->
+            <div class="algo-card" data-domains="tabular nlp">
+              <div class="algo-card-head">
+                <div class="algo-name">📐 Support Vector Machine</div>
+                <span class="algo-type-badge type-sup">Supervised</span>
+              </div>
+              <div class="algo-how">Finds the hyperplane that maximizes the margin between two classes. Uses "kernel tricks" to handle non-linear boundaries by projecting data into higher-dimensional spaces.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-tabular">Tabular Data</span>
+                <span class="algo-domain dom-nlp">NLP</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Text classification, image recognition, bioinformatics (gene classification)</div>
+            </div>
+
+            <!-- 5. K-Means -->
+            <div class="algo-card" data-domains="tabular">
+              <div class="algo-card-head">
+                <div class="algo-name">🔵 K-Means Clustering</div>
+                <span class="algo-type-badge type-unsup">Unsupervised</span>
+              </div>
+              <div class="algo-how">Assigns data points to K clusters by iteratively updating cluster centers (centroids) to minimize the distance between each point and its nearest centroid until assignments stabilize.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-tabular">Tabular Data</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Customer segmentation, document clustering, anomaly detection, image compression</div>
+            </div>
+
+            <!-- 6. PCA -->
+            <div class="algo-card" data-domains="tabular cv">
+              <div class="algo-card-head">
+                <div class="algo-name">📉 PCA</div>
+                <span class="algo-type-badge type-unsup">Unsupervised</span>
+              </div>
+              <div class="algo-how">Finds new axes (principal components) that capture the maximum variance in data. Projects high-dimensional data onto fewer dimensions while preserving as much information as possible.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-tabular">Tabular Data</span>
+                <span class="algo-domain dom-cv">Computer Vision</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Dimensionality reduction, noise filtering, data visualization, preprocessing for ML pipelines</div>
+            </div>
+
+            <!-- 7. CNN -->
+            <div class="algo-card" data-domains="cv">
+              <div class="algo-card-head">
+                <div class="algo-name">👁️ CNN (ResNet / VGG)</div>
+                <span class="algo-type-badge type-dl">Deep Learning</span>
+              </div>
+              <div class="algo-how">Uses convolutional filters to scan images and detect local patterns (edges, textures, shapes). Stacks layers to recognize increasingly complex features — from pixels to objects.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-cv">Computer Vision</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Image classification, object detection, medical imaging, autonomous vehicles, facial recognition</div>
+            </div>
+
+            <!-- 8. BERT -->
+            <div class="algo-card" data-domains="nlp">
+              <div class="algo-card-head">
+                <div class="algo-name">💬 BERT (Transformer)</div>
+                <span class="algo-type-badge type-dl">Deep Learning</span>
+              </div>
+              <div class="algo-how">Reads text in both directions simultaneously using self-attention mechanisms to understand context. Pre-trained on massive text corpora, then fine-tuned on specific tasks with minimal data.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-nlp">NLP</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Sentiment analysis, named entity recognition, question answering, document classification</div>
+            </div>
+
+            <!-- 9. GPT / Diffusion -->
+            <div class="algo-card" data-domains="genai nlp">
+              <div class="algo-card-head">
+                <div class="algo-name">✨ GPT (Generative Transformer)</div>
+                <span class="algo-type-badge type-dl">Deep Learning</span>
+              </div>
+              <div class="algo-how">Predicts the next token in a sequence using a decoder-only transformer with masked self-attention. Trained on internet-scale text to generate fluent, coherent language.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-genai">Generative AI</span>
+                <span class="algo-domain dom-nlp">NLP</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Chatbots, code generation, content writing, summarization, translation</div>
+            </div>
+
+            <!-- 10. GAN -->
+            <div class="algo-card" data-domains="genai cv">
+              <div class="algo-card-head">
+                <div class="algo-name">🎨 GAN (Generative Adversarial Network)</div>
+                <span class="algo-type-badge type-dl">Deep Learning</span>
+              </div>
+              <div class="algo-how">Pits two neural networks against each other: a Generator creates fake samples, and a Discriminator tries to tell real from fake. Competing forces drive the generator to produce increasingly realistic outputs.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-genai">Generative AI</span>
+                <span class="algo-domain dom-cv">Computer Vision</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Synthetic image generation, deepfakes, data augmentation, style transfer, drug discovery</div>
+            </div>
+
+            <!-- 11. Diffusion Model -->
+            <div class="algo-card" data-domains="genai cv">
+              <div class="algo-card-head">
+                <div class="algo-name">🌊 Diffusion Model (DDPM)</div>
+                <span class="algo-type-badge type-dl">Deep Learning</span>
+              </div>
+              <div class="algo-how">Gradually adds noise to training images until they become pure noise, then learns to reverse that process. At inference, starts from random noise and iteratively denoises to generate a new image.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-genai">Generative AI</span>
+                <span class="algo-domain dom-cv">Computer Vision</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Text-to-image (Stable Diffusion, DALL·E), video generation, scientific image synthesis</div>
+            </div>
+
+            <!-- 12. Q-Learning -->
+            <div class="algo-card" data-domains="rl">
+              <div class="algo-card-head">
+                <div class="algo-name">🎮 Q-Learning (DQN)</div>
+                <span class="algo-type-badge type-rl">Reinforcement</span>
+              </div>
+              <div class="algo-how">An agent learns by trial and error: it takes actions, receives rewards or penalties, and updates a Q-table (or deep network) to estimate the long-term value of each action in each state.</div>
+              <div class="algo-domains">
+                <span class="algo-domain dom-rl">Reinforcement Learning</span>
+              </div>
+              <div class="algo-use"><strong>Use cases:</strong> Game playing (Atari, Chess), robotics, autonomous navigation, resource management</div>
+            </div>
+
+          </div><!-- /algo-grid -->
+        </div><!-- /algo-framework -->
+
         <div class="vp-section">
           <h4>Value Proposition</h4>
           <div class="vp-inner-grid">
@@ -854,7 +1160,7 @@ footer a{color:var(--blue-400);text-decoration:none}
       <a href="mailto:get2kunle@gmail.com" target="_blank" rel="noopener noreferrer" class="c-link"><span>✉️</span>get2kunle@gmail.com</a>
       <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="c-link"><span>🔗</span>LinkedIn</a>
       <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="c-link"><span>🐙</span>GitHub</a>
-      <a href="#contact" class="c-link" Resume</a>
+      <a href="#contact" class="c-link">📄 Resume</a>
     </div>
   </div>
 </section>
@@ -869,20 +1175,44 @@ footer a{color:var(--blue-400);text-decoration:none}
 <div id="toast">Message sent! I'll be in touch soon ✓</div>
 
 <script>
-// Artifact tab switching
+// ── Domain filter ──
+function filterDomain(domain, btn) {
+  document.querySelectorAll('.d-tab').forEach(t => t.style.opacity = '.5');
+  btn.style.opacity = '1';
+
+  document.querySelectorAll('.algo-card').forEach(card => {
+    if (domain === 'all') {
+      card.dataset.hidden = 'false';
+    } else {
+      const domains = card.dataset.domains || '';
+      card.dataset.hidden = domains.includes(domain) ? 'false' : 'true';
+    }
+  });
+}
+
+// Reset all tab opacity on "All"
+document.querySelectorAll('.d-tab').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.d-tab').forEach(t => t.style.opacity = '.5');
+    this.style.opacity = '1';
+  });
+});
+// Init
+document.querySelector('.d-tab.all').style.opacity = '1';
+
+// ── Artifact tab switching ──
 function showArt(idx, btn) {
   document.querySelectorAll('.artifact-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.art-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('art-' + idx).classList.add('active');
   btn.classList.add('active');
-  // re-trigger reveal for newly shown card
   document.querySelectorAll('#art-' + idx + ' .reveal').forEach(el => {
     el.classList.remove('in');
     setTimeout(() => el.classList.add('in'), 50);
   });
 }
 
-// Scroll reveal
+// ── Scroll reveal ──
 const obs = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
@@ -893,19 +1223,18 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// Active nav
+// ── Active nav ──
 const secs = document.querySelectorAll('section[id]');
 const navAs = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
   let cur = '';
   secs.forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
   navAs.forEach(a => {
-    const match = a.getAttribute('href') === '#' + cur;
-    a.classList.toggle('active', match);
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
   });
 }, { passive: true });
 
-// Form
+// ── Form ──
 function handleSubmit(e) {
   e.preventDefault();
   const t = document.getElementById('toast');
@@ -914,7 +1243,7 @@ function handleSubmit(e) {
   e.target.reset();
 }
 
-// Init first artifact reveal
+// ── Init first artifact reveal ──
 document.querySelectorAll('#art-0 .reveal').forEach((el, i) => {
   setTimeout(() => el.classList.add('in'), 100 + i * 80);
 });
